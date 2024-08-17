@@ -11,8 +11,10 @@ public class DropBehaviour : MonoBehaviour, IDropHandler
         {
             if (eventData.pointerDrag.gameObject.tag.Equals(gameObject.tag))
             {
+                eventData.pointerDrag.GetComponent<DragDrop>().isConnected = true;
                 eventData.pointerDrag.GetComponent<DragDrop>().shouldReturnToStartPosition = false;
                 eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+                GameManager.howManyCorrect++;
             }
         }
     }
