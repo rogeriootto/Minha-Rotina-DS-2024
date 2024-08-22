@@ -1391,7 +1391,6 @@ GameObject:
   - component: {fileID: 1806160668}
   - component: {fileID: 1806160671}
   - component: {fileID: 1806160670}
-  - component: {fileID: 1806160669}
   - component: {fileID: 1806160672}
   - component: {fileID: 1806160673}
   m_Layer: 5
@@ -1420,23 +1419,6 @@ RectTransform:
   m_AnchoredPosition: {x: -113.04, y: 278}
   m_SizeDelta: {x: 657.19, y: 718.02}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1806160669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1806160667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e7423c2a75666044a5660e311ad99aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shouldReturnToStartPosition: 0
-  isConnected: 0
-  alreadyPlayedParticle: 0
-  rightPieceVFX: {fileID: 0}
-  correctSFX: {fileID: 0}
 --- !u!114 &1806160670
 MonoBehaviour:
   m_ObjectHideFlags: 0

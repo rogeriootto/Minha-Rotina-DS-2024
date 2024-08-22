@@ -9,22 +9,37 @@ public class GameManager : MonoBehaviour
     public static int howManyCorrect;
     public static int howManyWrong;
     public static int howManyTries;
-    public static int timeSpent;
+    public static float timeSpent;
+    public static float hintTimeSpent;
+    public static int howManyHints;
     private static bool alreadyPlayedParticle = false;
     private static ArrayList levelsData = new ArrayList();
     private static Dictionary<string, int> thisLevelData = new Dictionary<string, int>();
+    public static bool isArmarioSet = false;
+    public static bool isCriancaSet = false;
+    public static bool isVasoSet = false;
 
     void Start() {
         howManyCorrect = 0;
         howManyWrong = 0;
         howManyTries = 0;
+        howManyHints = 0;
         timeSpent = 0;
         alreadyPlayedParticle = false;
         thisLevelData = new Dictionary<string, int>();
+        isArmarioSet = false;
+        isCriancaSet = false;
+        isVasoSet = false;
     }
 
     void Update() {
-        timeSpent = (int)Time.time;
+        timeSpent += 1 * Time.deltaTime;
+        hintTimeSpent += 1 * Time.deltaTime;
+
+        if (hintTimeSpent > 5 && (!isArmarioSet || !isCriancaSet || !isVasoSet)) {
+            hintTimeSpent = 0;
+            generateHint();
+        }
 
         if (howManyCorrect == 3) {
             if (!alreadyPlayedParticle) {
@@ -33,6 +48,23 @@ public class GameManager : MonoBehaviour
             }
             StartCoroutine(WaitAndGoToNextLevel());
         }
+    }
+
+    private void generateHint() {
+        if (!isArmarioSet) {
+            GameObject.FindWithTag("armario").GetComponent<DragDrop>().hint = true;
+            return;
+        }
+        if (!isCriancaSet) {
+            print("hint da criança");
+            print(GameObject.FindWithTag("criança").GetComponent<DragDrop>());
+            GameObject.FindWithTag("criança").GetComponent<DragDrop>().hint = true;
+            return;
+        }
+        if (!isVasoSet) {
+            GameObject.FindWithTag("vaso").GetComponent<DragDrop>().hint = true;
+            return;
+        }   
     }
 
     private IEnumerator WaitAndGoToNextLevel() {
@@ -45,13 +77,15 @@ public class GameManager : MonoBehaviour
         thisLevelData.Add("howManyCorrect", howManyCorrect);
         thisLevelData.Add("howManyWrong", howManyWrong);
         thisLevelData.Add("howManyTries", howManyTries);
-        thisLevelData.Add("timeSpent", timeSpent);
+        thisLevelData.Add("howManyHints", howManyHints);
+        thisLevelData.Add("timeSpent", (int)timeSpent);
         levelsData.Add(thisLevelData);
         foreach( var x in levelsData) {
             Debug.Log("level: " + ((Dictionary<string, int>)x)["level"]);
             Debug.Log("howManyCorrect: " + ((Dictionary<string, int>)x)["howManyCorrect"]);
             Debug.Log("howManyWrong: " + ((Dictionary<string, int>)x)["howManyWrong"]);
             Debug.Log("howManyTries: " + ((Dictionary<string, int>)x)["howManyTries"]);
+            Debug.Log("howManyHints: " + ((Dictionary<string, int>)x)["howManyHints"]);
             Debug.Log("timeSpent: " + ((Dictionary<string, int>)x)["timeSpent"]);
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
