@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public static float hintTimeSpent;
     public static int howManyHints;
     private static bool alreadyPlayedParticle = false;
-    private static ArrayList levelsData = new ArrayList();
+    public static ArrayList levelsData = new ArrayList();
     private static Dictionary<string, int> thisLevelData = new Dictionary<string, int>();
     public static bool isArmarioSet = false;
     public static bool isCriancaSet = false;
@@ -65,6 +65,23 @@ public class GameManager : MonoBehaviour
         }   
     }
 
+    public void goToFirstLevel(){
+        levelsData = new ArrayList();
+        SceneManager.LoadScene(1);
+    }
+
+    public void goToMainMenu(){
+        SceneManager.LoadScene(0);
+    }
+
+    public void goToResults(){
+        SceneManager.LoadScene(5);
+    }
+
+    public ArrayList getLevelsData() {
+        return levelsData;
+    }
+
     private IEnumerator WaitAndGoToNextLevel() {
         yield return new WaitForSeconds(3);
         goToNextLevel();
@@ -78,14 +95,6 @@ public class GameManager : MonoBehaviour
         thisLevelData.Add("howManyHints", howManyHints);
         thisLevelData.Add("timeSpent", (int)timeSpent);
         levelsData.Add(thisLevelData);
-        // foreach( var x in levelsData) {
-        //     Debug.Log("level: " + ((Dictionary<string, int>)x)["level"]);
-        //     Debug.Log("howManyCorrect: " + ((Dictionary<string, int>)x)["howManyCorrect"]);
-        //     Debug.Log("howManyWrong: " + ((Dictionary<string, int>)x)["howManyWrong"]);
-        //     Debug.Log("howManyTries: " + ((Dictionary<string, int>)x)["howManyTries"]);
-        //     Debug.Log("howManyHints: " + ((Dictionary<string, int>)x)["howManyHints"]);
-        //     Debug.Log("timeSpent: " + ((Dictionary<string, int>)x)["timeSpent"]);
-        // }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
