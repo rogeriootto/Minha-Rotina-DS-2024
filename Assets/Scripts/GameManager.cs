@@ -56,8 +56,6 @@ public class GameManager : MonoBehaviour
             return;
         }
         if (!isCriancaSet) {
-            print("hint da criança");
-            print(GameObject.FindWithTag("criança").GetComponent<DragDrop>());
             GameObject.FindWithTag("criança").GetComponent<DragDrop>().hint = true;
             return;
         }
@@ -80,14 +78,14 @@ public class GameManager : MonoBehaviour
         thisLevelData.Add("howManyHints", howManyHints);
         thisLevelData.Add("timeSpent", (int)timeSpent);
         levelsData.Add(thisLevelData);
-        foreach( var x in levelsData) {
-            Debug.Log("level: " + ((Dictionary<string, int>)x)["level"]);
-            Debug.Log("howManyCorrect: " + ((Dictionary<string, int>)x)["howManyCorrect"]);
-            Debug.Log("howManyWrong: " + ((Dictionary<string, int>)x)["howManyWrong"]);
-            Debug.Log("howManyTries: " + ((Dictionary<string, int>)x)["howManyTries"]);
-            Debug.Log("howManyHints: " + ((Dictionary<string, int>)x)["howManyHints"]);
-            Debug.Log("timeSpent: " + ((Dictionary<string, int>)x)["timeSpent"]);
-        }
+        // foreach( var x in levelsData) {
+        //     Debug.Log("level: " + ((Dictionary<string, int>)x)["level"]);
+        //     Debug.Log("howManyCorrect: " + ((Dictionary<string, int>)x)["howManyCorrect"]);
+        //     Debug.Log("howManyWrong: " + ((Dictionary<string, int>)x)["howManyWrong"]);
+        //     Debug.Log("howManyTries: " + ((Dictionary<string, int>)x)["howManyTries"]);
+        //     Debug.Log("howManyHints: " + ((Dictionary<string, int>)x)["howManyHints"]);
+        //     Debug.Log("timeSpent: " + ((Dictionary<string, int>)x)["timeSpent"]);
+        // }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

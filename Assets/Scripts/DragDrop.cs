@@ -18,8 +18,8 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     public AudioClip correctSFX;
     public bool hint = false;
     private static float breathTime = 0f;
-    private Vector3 breathIn = new Vector3(1.1f, 1.1f, 1.1f);
-    private Vector3 breathOut = new Vector3(0.9f, 0.9f, 0.9f);
+    private Vector3 breathIn = new Vector3(0.9f, 0.9f, 0.9f);
+    private Vector3 breathOut = new Vector3(0.7f, 0.7f, 0.7f);
     private bool breathingIn = true;
     private float expandDuration = 0.3f;
     private bool hintState = false;
