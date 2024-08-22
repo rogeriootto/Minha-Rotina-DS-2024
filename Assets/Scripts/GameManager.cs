@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
         howManyTries = 0;
         howManyHints = 0;
         timeSpent = 0;
+        hintTimeSpent = 0;
         alreadyPlayedParticle = false;
         thisLevelData = new Dictionary<string, int>();
         isArmarioSet = false;
