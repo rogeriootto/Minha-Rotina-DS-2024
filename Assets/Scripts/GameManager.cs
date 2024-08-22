@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
         timeSpent += 1 * Time.deltaTime;
         hintTimeSpent += 1 * Time.deltaTime;
 
-        if (hintTimeSpent > 5 && (!isArmarioSet || !isCriancaSet || !isVasoSet)) {
+        if (hintTimeSpent > 60 && (!isArmarioSet || !isCriancaSet || !isVasoSet)) {
             hintTimeSpent = 0;
             generateHint();
         }
