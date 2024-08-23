@@ -98,4 +98,8 @@ public class GameManager : MonoBehaviour
         levelsData.Add(thisLevelData);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    public void doExitGame() {
+        Application.Quit();
+    }
 }
