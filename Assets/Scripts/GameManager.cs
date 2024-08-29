@@ -18,6 +18,14 @@ public class GameManager : MonoBehaviour
     public static bool isArmarioSet = false;
     public static bool isCriancaSet = false;
     public static bool isVasoSet = false;
+    public static bool isCountDownOver = false;
+    private static float countDown = 5;
+    
+    public GameObject timer;
+
+    public GameObject conteudo;
+
+    private static bool isGaming = false;
 
     void Start() {
         howManyCorrect = 0;
@@ -31,24 +39,40 @@ public class GameManager : MonoBehaviour
         isArmarioSet = false;
         isCriancaSet = false;
         isVasoSet = false;
+        isCountDownOver = false;
+        countDown = 5;
     }
 
     void Update() {
-        timeSpent += 1 * Time.deltaTime;
-        hintTimeSpent += 1 * Time.deltaTime;
+       if (isGaming) {
+            if (isCountDownOver) {
+                timeSpent += 1 * Time.deltaTime;
+                hintTimeSpent += 1 * Time.deltaTime;
 
-        if (hintTimeSpent > 60 && (!isArmarioSet || !isCriancaSet || !isVasoSet)) {
-            hintTimeSpent = 0;
-            generateHint();
-        }
+                if (hintTimeSpent > 60 && (!isArmarioSet || !isCriancaSet || !isVasoSet)) {
+                    hintTimeSpent = 0;
+                    generateHint();
+                }
 
-        if (howManyCorrect == 3) {
-            if (!alreadyPlayedParticle) {
-                alreadyPlayedParticle = true;
-                Instantiate(winVFX, new Vector3(0, 5, 50), Quaternion.Euler(90, 0, 0));
+                if (howManyCorrect == 3) {
+                    if (!alreadyPlayedParticle) {
+                        alreadyPlayedParticle = true;
+                        Instantiate(winVFX, new Vector3(0, 5, 50), Quaternion.Euler(90, 0, 0));
+                    }
+                    StartCoroutine(WaitAndGoToNextLevel());
+                }  
             }
-            StartCoroutine(WaitAndGoToNextLevel());
-        }
+            else {
+                countDown -= 1 * Time.deltaTime;
+                timer.GetComponent<TMPro.TextMeshProUGUI>().text = countDown.ToString("0");
+
+                if (countDown <= 0.9) {
+                    timer.SetActive(false);
+                    isCountDownOver = true;
+                    conteudo.SetActive(true);
+                }
+            }
+       }
     }
 
     private void generateHint() {
@@ -64,19 +88,6 @@ public class GameManager : MonoBehaviour
             GameObject.FindWithTag("vaso").GetComponent<DragDrop>().hint = true;
             return;
         }   
-    }
-
-    public void goToFirstLevel(){
-        levelsData = new ArrayList();
-        SceneManager.LoadScene(1);
-    }
-
-    public void goToMainMenu(){
-        SceneManager.LoadScene(0);
-    }
-
-    public void goToResults(){
-        SceneManager.LoadScene(5);
     }
 
     public ArrayList getLevelsData() {
@@ -99,7 +110,15 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void doExitGame() {
-        Application.Quit();
+     public void goToFirstLevel(){
+        isGaming = true;
+        levelsData = new ArrayList();
+        SceneManager.LoadScene(1);
     }
+
+    public void goToMainMenu(){
+        isGaming = false;
+        SceneManager.LoadScene(0);
+    }
+
 }

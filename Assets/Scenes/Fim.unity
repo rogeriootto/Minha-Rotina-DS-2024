@@ -369,6 +369,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winVFX: {fileID: 282418830720372106, guid: 6d2a4df921608ea43b0ec47a09d8c943, type: 3}
+  timer: {fileID: 0}
+  conteudo: {fileID: 0}
 --- !u!1 &429106723
 GameObject:
   m_ObjectHideFlags: 0

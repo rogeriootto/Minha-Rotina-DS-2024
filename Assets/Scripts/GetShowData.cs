@@ -3,33 +3,44 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using System.IO;
 
 public class GetShowData : MonoBehaviour
 {
-    public GameObject gameManager;
     public GameObject textMesh;
-    private ArrayList levelData;
+    private string filename;
+    public GameObject location;
     private string finalArray = "";
 
     // Start is called before the first frame update
     void Start()
     {
-        var gm = gameManager.GetComponent<GameManager>();
-        levelData = gm.getLevelsData();
-        Debug.Log("levelData: " + levelData);
-        Debug.Log("levelData.Count: " + levelData.Count);
-        if (levelData.Count == 0) {
-            textMesh.GetComponent<TextMeshProUGUI>().text = "Sem resultados para mostar :(";
-        } else {
-            foreach( var x in levelData) {
-                finalArray += "Level " + ((Dictionary<string, int>)x)["level"] + ":\n";
-                finalArray += "Acertos: " + ((Dictionary<string, int>)x)["howManyCorrect"] + "\n";
-                finalArray += "Erros: " + ((Dictionary<string, int>)x)["howManyWrong"] + "\n";
-                finalArray += "Tentativas: " + ((Dictionary<string, int>)x)["howManyTries"] + "\n";
-                finalArray += "Número de Dicas usadas: " + ((Dictionary<string, int>)x)["howManyHints"] + "\n";
-                finalArray += "Tempo gasto: " + ((Dictionary<string, int>)x)["timeSpent"] + " segundos\n\n";
-            }
-            textMesh.GetComponent<TextMeshProUGUI>().text = finalArray;
+        filename = Path.Combine(Application.persistentDataPath, "results.csv");
+        location.GetComponent<TextMeshProUGUI>().text = "Csv está localizado em:\n" + Path.Combine(Application.persistentDataPath, "results.csv");
+
+        if (!File.Exists(filename))
+        {
+            textMesh.GetComponent<TextMeshProUGUI>().text = "Sem resultados para mostrar :(";
+            return;
         }
+
+        // Ler as linhas do arquivo CSV
+        string[] lines = File.ReadAllLines(filename);
+
+        // Ignorar a primeira linha que contém o cabeçalho
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string[] columns = lines[i].Split(';');
+            finalArray += "Horário: " + columns[0] + "\n";
+            finalArray += "Level: " + columns[1] + "\n";
+            finalArray += "Acertos: " + columns[2] + "\n";
+            finalArray += "Erros: " + columns[3] + "\n";
+            finalArray += "Tentativas: " + columns[4] + "\n";
+            finalArray += "Dicas: " + columns[5] + "\n";
+            finalArray += "Tempo: " + columns[6] + " segundos\n\n";
+        }
+
+        // Exibir os dados no TextMeshProUGUI
+        textMesh.GetComponent<TextMeshProUGUI>().text = finalArray;
     }
 }
