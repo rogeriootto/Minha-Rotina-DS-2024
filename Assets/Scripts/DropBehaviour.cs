@@ -9,7 +9,7 @@ public class DropBehaviour : MonoBehaviour, IDropHandler
     {
         if(eventData.pointerDrag != null)
         {
-            if (eventData.pointerDrag.gameObject.tag.Equals(gameObject.tag))
+            if (eventData.pointerDrag.gameObject.tag.Equals(gameObject.tag + "-certo"))
             {
                 eventData.pointerDrag.GetComponent<DragDrop>().isConnected = true;
                 eventData.pointerDrag.GetComponent<DragDrop>().shouldReturnToStartPosition = false;

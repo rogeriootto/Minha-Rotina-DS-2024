@@ -77,15 +77,15 @@ public class GameManager : MonoBehaviour
 
     private void generateHint() {
         if (!isArmarioSet) {
-            GameObject.FindWithTag("armario").GetComponent<DragDrop>().hint = true;
+            GameObject.FindWithTag("armario-certo").GetComponent<DragDrop>().hint = true;
             return;
         }
         if (!isCriancaSet) {
-            GameObject.FindWithTag("criança").GetComponent<DragDrop>().hint = true;
+            GameObject.FindWithTag("criança-certo").GetComponent<DragDrop>().hint = true;
             return;
         }
         if (!isVasoSet) {
-            GameObject.FindWithTag("vaso").GetComponent<DragDrop>().hint = true;
+            GameObject.FindWithTag("vaso-certo").GetComponent<DragDrop>().hint = true;
             return;
         }   
     }

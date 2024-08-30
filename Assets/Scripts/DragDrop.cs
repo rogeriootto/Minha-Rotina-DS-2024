@@ -88,13 +88,13 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void SetIsAlreadySet(bool isSet) {
         switch (gameObject.tag) {
-            case "armario":
+            case "armario-certo":
                 GameManager.isArmarioSet = isSet;
                 break;
-            case "criança":
+            case "criança-certo":
                 GameManager.isCriancaSet = isSet;
                 break;
-            case "vaso":
+            case "vaso-certo":
                 GameManager.isVasoSet = isSet;
                 break;
         }

@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 66532081}
   m_Layer: 5
   m_Name: armario
-  m_TagString: armario
+  m_TagString: armario-certo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -867,7 +867,7 @@ GameObject:
   - component: {fileID: 1037133866}
   m_Layer: 5
   m_Name: "crian\xE7a"
-  m_TagString: "crian\xE7a"
+  m_TagString: "crian\xE7a-certo"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1235,7 +1235,7 @@ GameObject:
   - component: {fileID: 1461681264}
   m_Layer: 5
   m_Name: Vaso
-  m_TagString: vaso
+  m_TagString: vaso-certo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

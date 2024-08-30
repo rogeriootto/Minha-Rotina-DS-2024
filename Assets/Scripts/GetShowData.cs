@@ -43,4 +43,17 @@ public class GetShowData : MonoBehaviour
         // Exibir os dados no TextMeshProUGUI
         textMesh.GetComponent<TextMeshProUGUI>().text = finalArray;
     }
+
+    public void deleteFile() {
+        bool fileExists = File.Exists(filename);
+
+        if (fileExists) {
+            using (TextWriter tw = new StreamWriter(filename, false))
+            {
+                tw.WriteLine("Horario; Nivel; Acertos; Erros; Tentativas; Dicas; Tempo");
+            }
+        }
+
+        textMesh.GetComponent<TextMeshProUGUI>().text = "Dados deletados!";
+    }
 }

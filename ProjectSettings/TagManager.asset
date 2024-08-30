@@ -8,6 +8,9 @@ TagManager:
   - vaso
   - armario
   - espelho
+  - "crian\xE7a-certo"
+  - vaso-certo
+  - armario-certo
   layers:
   - Default
   - TransparentFX
