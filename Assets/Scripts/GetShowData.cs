@@ -37,7 +37,9 @@ public class GetShowData : MonoBehaviour
             finalArray += "Erros: " + columns[3] + "\n";
             finalArray += "Tentativas: " + columns[4] + "\n";
             finalArray += "Dicas: " + columns[5] + "\n";
-            finalArray += "Tempo: " + columns[6] + " segundos\n\n";
+            finalArray += "Tempo: " + columns[6] + " segundos\n";
+            finalArray += "Musica (Pausas): " + columns[7] + "\n";
+            finalArray += "Musica (Retomadas): " + columns[8] + "\n\n";
         }
 
         // Exibir os dados no TextMeshProUGUI
@@ -50,7 +52,7 @@ public class GetShowData : MonoBehaviour
         if (fileExists) {
             using (TextWriter tw = new StreamWriter(filename, false))
             {
-                tw.WriteLine("Horario; Nivel; Acertos; Erros; Tentativas; Dicas; Tempo");
+                tw.WriteLine("Horario; Nivel; Acertos; Erros; Tentativas; Dicas; Tempo; Musica (Pausas); Musica (Retomadas)");
             }
         }
 

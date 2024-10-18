@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public static float timeSpent;
     public static float hintTimeSpent;
     public static int howManyHints;
+    public static int howManyMusicPause;
+    public static int howManyMusicUnPause;
     private static bool alreadyPlayedParticle = false;
     public static ArrayList levelsData = new ArrayList();
     private static Dictionary<string, int> thisLevelData = new Dictionary<string, int>();
@@ -34,6 +36,8 @@ public class GameManager : MonoBehaviour
         howManyHints = 0;
         timeSpent = 0;
         hintTimeSpent = 0;
+        howManyMusicPause = 0;
+        howManyMusicUnPause = 0;
         alreadyPlayedParticle = false;
         thisLevelData = new Dictionary<string, int>();
         isArmarioSet = false;
@@ -106,6 +110,8 @@ public class GameManager : MonoBehaviour
         thisLevelData.Add("howManyTries", howManyTries);
         thisLevelData.Add("howManyHints", howManyHints);
         thisLevelData.Add("timeSpent", (int)timeSpent);
+        thisLevelData.Add("howManyMusicPause", howManyMusicPause);
+        thisLevelData.Add("howManyMusicUnPause", howManyMusicUnPause);
         levelsData.Add(thisLevelData);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }

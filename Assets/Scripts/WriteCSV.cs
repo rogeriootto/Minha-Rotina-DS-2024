@@ -25,7 +25,7 @@ public class WriteCSV : MonoBehaviour
         {
             using (TextWriter tw = new StreamWriter(filename, false))
             {
-                tw.WriteLine("Horario; Nivel; Acertos; Erros; Tentativas; Dicas; Tempo");
+                tw.WriteLine("Horario; Nivel; Acertos; Erros; Tentativas; Dicas; Tempo; Musica (Pausas); Musica (Retomadas)");
             }
         }
 
@@ -39,7 +39,9 @@ public class WriteCSV : MonoBehaviour
                 ((Dictionary<string, int>)x)["howManyWrong"] + ";" +
                 ((Dictionary<string, int>)x)["howManyTries"] + ";" +
                 ((Dictionary<string, int>)x)["howManyHints"] + ";" +
-                ((Dictionary<string, int>)x)["timeSpent"]);
+                ((Dictionary<string, int>)x)["timeSpent"] + ";" +
+                ((Dictionary<string, int>)x)["howManyMusicPause"] + ";" +
+                ((Dictionary<string, int>)x)["howManyMusicUnPause"]);
             }
         }
     }

@@ -25,11 +25,13 @@ public class AudioManager : MonoBehaviour
         if (musicSource.isPlaying)
         {
             musicSource.Pause();
+            GameManager.howManyMusicPause++;
             PlayerPrefs.SetInt("MusicOn", 0); // Save preference
         }
         else
         {
             musicSource.Play();
+            GameManager.howManyMusicUnPause++;
             PlayerPrefs.SetInt("MusicOn", 1); // Save preference
         }
     }
